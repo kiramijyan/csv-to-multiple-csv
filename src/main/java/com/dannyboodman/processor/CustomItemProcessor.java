@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class CustomItemProcessor implements ItemProcessor<UserCsv, UserCsv> {
@@ -16,8 +19,6 @@ public class CustomItemProcessor implements ItemProcessor<UserCsv, UserCsv> {
     public UserCsv process(UserCsv item) throws Exception {
 
         String folderName = item.getId().substring(3, 5);
-
-
         String firstName = item.getFirstName();
         String lastName = item.getLastName();
         String email = item.getEmail();
@@ -25,7 +26,7 @@ public class CustomItemProcessor implements ItemProcessor<UserCsv, UserCsv> {
 
         createFolderIfNotExists(folderName);
 
-        String fileName = folderName + ".cvs";
+        String fileName = folderName + LocalDate.now() + ".cvs";
         FileWriter fileWriter = new FileWriter(new File(ApplicationPaths.OUTPUT_FOLDER + "/" + folderName, fileName), true);
         fileWriter.write(item.getId() + "," + firstName + "," + lastName + "," + email + "," + birthDate + "\n");
         fileWriter.close();
@@ -40,4 +41,8 @@ public class CustomItemProcessor implements ItemProcessor<UserCsv, UserCsv> {
         }
     }
 
+    private String formatDateTime(LocalDateTime dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
+        return dateTime.format(formatter);
+    }
 }
