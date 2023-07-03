@@ -2,11 +2,11 @@ package com.dannyboodman.config;
 
 import com.dannyboodman.processor.CustomItemProcessor;
 import com.dannyboodman.task.DirectoryCleanupTasklet;
-import com.dannyboodman.model.UserCsv;
 import com.dannyboodman.writer.CustomFlatFileItemReader;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
+@EnableBatchProcessing
 public class SampleJob {
 
 	@Autowired
