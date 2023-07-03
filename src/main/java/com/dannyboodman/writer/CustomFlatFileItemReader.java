@@ -13,7 +13,7 @@ public class CustomFlatFileItemReader {
     public FlatFileItemReader<String> flatFileItemReader() {
         FlatFileItemReader<String> flatFileItemReader = new FlatFileItemReader<>();
         flatFileItemReader.setStrict(false);
-        flatFileItemReader.setResource(new FileSystemResource(new File(ApplicationPaths.INPUT)));
+        flatFileItemReader.setResource(new FileSystemResource(new File(ApplicationPaths.INPUT_100000)));
 
         flatFileItemReader.setLineMapper((line, lineNumber) -> line);
 
