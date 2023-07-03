@@ -50,7 +50,6 @@ public class SampleJob {
 				.build();
 	}
 
-	@Scheduled(cron = "0 * * * * *")
 	@Bean
 	public Job chunkJob() {
 		return jobBuilderFactory.get("Chunk Job")
