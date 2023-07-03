@@ -53,7 +53,7 @@ public class SampleJob {
 	@Bean
 	public Step writeCsvToMultipleCsv() {
 		return stepBuilderFactory.get("Write CSV")
-				.<UserCsv, UserCsv>chunk(10)
+				.<String, String>chunk(10)
 				.reader(customFlatFileItemReader.flatFileItemReader())
 				.processor(customItemProcessor)
 				.writer(myItemWriter())
@@ -61,10 +61,10 @@ public class SampleJob {
 	}
 
 	@Bean
-	public ItemWriter<UserCsv> myItemWriter() {
-		return new ItemWriter<UserCsv>() {
+	public ItemWriter<String> myItemWriter() {
+		return new ItemWriter<String>() {
 			@Override
-			public void write(List<? extends UserCsv> items) throws Exception {}
+			public void write(List<? extends String> items) throws Exception {}
 		};
 	}
 }
