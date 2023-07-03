@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileWriter;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Component
 public class CustomItemProcessor implements ItemProcessor<UserCsv, UserCsv> {
@@ -39,10 +37,5 @@ public class CustomItemProcessor implements ItemProcessor<UserCsv, UserCsv> {
         if (!folder.exists()) {
             folder.mkdirs();
         }
-    }
-
-    private String formatDateTime(LocalDateTime dateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
-        return dateTime.format(formatter);
     }
 }
